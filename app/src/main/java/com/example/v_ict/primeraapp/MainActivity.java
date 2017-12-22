@@ -19,18 +19,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progreso=(ProgressBar) findViewById(R.id.prog);
-        for(int i=0;i>100;i++){
-            progreso.setProgress(i);
-        }
+        progreso = (ProgressBar) findViewById(R.id.prog);
+        progreso.setProgress(10);
+        progreso.setProgress(30);
+        progreso.setProgress(60);
+        progreso.setProgress(90);
+        progreso.setProgress(100);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                Intent homeIntent= new Intent(MainActivity.this, loginActivity.class);
+                Intent homeIntent = new Intent(MainActivity.this, loginActivity.class);
                 startActivity(homeIntent);
                 finish();
             }
-        },SPLASH_TIME_OUT);
+        }, SPLASH_TIME_OUT);
     }
 }

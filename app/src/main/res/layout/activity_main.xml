@@ -18,16 +18,16 @@
             android:id="@+id/logo"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:src="@drawable/logo"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
 
         <ProgressBar
             android:id="@+id/prog"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            />
+            android:layout_margin="30dp"/>
     </RelativeLayout>
 
 </RelativeLayout>
