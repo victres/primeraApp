@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">primeraApp</string>
+    <string name="title_activity_registry">RegistryActivity</string>
 </resources>

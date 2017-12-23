@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:gravity="center"
+    android:padding="16dp"
     tools:context="com.example.v_ict.primeraapp.MainActivity">
 
     <RelativeLayout
@@ -35,6 +36,7 @@
             android:drawablePadding="10dp"
             android:hint="Username"
             android:paddingLeft="15dp"
+            android:singleLine="true"
             android:textColor="@color/greyLogin"
             android:textColorHighlight="@color/greyLogin"
             android:textColorHint="@color/greyLogin" />
@@ -49,6 +51,7 @@
             android:drawablePadding="10dp"
             android:hint="Username"
             android:paddingLeft="15dp"
+            android:singleLine="true"
             android:textColor="@color/greyLogin"
             android:textColorHint="@color/greyLogin" />
 

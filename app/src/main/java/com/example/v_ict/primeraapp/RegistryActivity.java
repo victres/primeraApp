@@ -1,14 +1,14 @@
 package com.example.v_ict.primeraapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -29,41 +29,32 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class loginActivity extends AppCompatActivity {
+public class RegistryActivity extends AppCompatActivity {
 
-    // TODO: Estudiar buenas practicas de programación
-    // TODO: Repaso POO, Polimorfismo, Herencia
-
-    private EditText user, password;
-    private TextView registry;
-    private Button login;
-    private ImageView logo;
+    private EditText user, email, userLogin, passwordLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registry);
 
-        // Inicializamos variables
         init();
 
-        registry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(loginActivity.this, RegistryActivity.class);
-                startActivity(intent);
-            }
-        });
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                final String usuario = user.getText().toString();
-                final String contrasenia = password.getText().toString();
+                final String emailText = email.getText().toString();
+                final String userText = user.getText().toString();
+                final String userLoginText = userLogin.getText().toString();
+                final String contrasenia = passwordLogin.getText().toString();
 
-                String service = "login.php";
-                final String mRequestBody = loginRequestJSON(usuario, contrasenia).toString();
+                String service = "register.php";
+                final String mRequestBody = registroRequestJSON(userText, emailText, userLoginText, contrasenia).toString();
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.server.concat(service),
                         new Response.Listener<String>() {
@@ -88,8 +79,8 @@ public class loginActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
-                                if (code.equals("login_success")) {
-                                    Intent intent = new Intent(loginActivity.this, general.class);
+                                if (code.equals("reg_success")) {
+                                    Intent intent = new Intent(RegistryActivity.this, loginActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
@@ -130,29 +121,33 @@ public class loginActivity extends AppCompatActivity {
 
                 VolleySingleton.getInstance(getApplicationContext()).addToRequestqueue(stringRequest);
 
-
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }
 
-    public static JSONObject loginRequestJSON(String usuario, String contrasenia) {
-
-        JSONObject jsonParams = new JSONObject();
-
+    private String registroRequestJSON(String userText, String emailText, String userLoginText, String contrasenia) {
+        JSONObject request = new JSONObject();
         try {
-            jsonParams.put("user_name", usuario);
-            jsonParams.put("password", contrasenia);
-        } catch (Exception e) {
-            Log.e("JSON Error: ", e.getMessage());
+            request.put("name", userText);
+            request.put("email", emailText);
+            request.put("user_name", userLoginText);
+            request.put("password", contrasenia);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return jsonParams;
+        return request.toString();
     }
 
-    public void init() {
-        user = (EditText) findViewById(R.id.user);
-        password = (EditText) findViewById(R.id.pass);
-        registry = (TextView) findViewById(R.id.reg);
-        login = (Button) findViewById(R.id.login);
-        logo = (ImageView) findViewById(R.id.logo);
+
+    private void init() {
+
+        user = (EditText) findViewById(R.id.name);
+        email = (EditText) findViewById(R.id.email);
+        userLogin = (EditText) findViewById(R.id.userLogin);
+        passwordLogin = (EditText) findViewById(R.id.passwordLogin);
+
     }
+
 }
