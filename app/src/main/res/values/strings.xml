@@ -3,9 +3,11 @@
     <string name="registro">Registro</string>
     <string name="registrarse">registrarse</string>
     <string name="login">Log In</string>
-    <string name="name">Name:</string>
-    <string name="email">Email:</string>
+    <string name="name">Name</string>
+    <string name="email">E-mail</string>
     <string name="user">User</string>
     <string name="password">Password</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="logout">Log Out</string>
     <string name="title_activity_registry">RegistryActivity</string>
 </resources>
