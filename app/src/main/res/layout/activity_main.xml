@@ -20,13 +20,13 @@
             android:src="@drawable/logo"
             android:layout_centerHorizontal="true"/>
 
-        <ProgressBar
+        <!--<ProgressBar
             android:id="@+id/prog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            />
+            />-->
     </RelativeLayout>
 
 </RelativeLayout>
