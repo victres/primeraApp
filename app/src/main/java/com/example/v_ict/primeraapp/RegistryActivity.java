@@ -80,7 +80,9 @@ public class RegistryActivity extends AppCompatActivity {
                                 }
 
                                 if (code.equals("reg_success")) {
+                                    Toast.makeText(getApplicationContext(), code, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(RegistryActivity.this, loginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
                                     finish();
                                 } else {
