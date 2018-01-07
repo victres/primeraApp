@@ -85,12 +85,16 @@ public class loginActivity extends AppCompatActivity {
                                 try {
                                     jsonArray = new JSONArray(response);
                                     jsonObject = new JSONObject(jsonArray.get(0).toString());
-
                                     code = jsonObject.getString("code");
-                                    message = jsonObject.getString("message");
-
-                                    name = jsonObject.getString("name");
-                                    email = jsonObject.getString("email");
+                                    if(jsonObject.has("name")){
+                                        name = jsonObject.getString("name");
+                                    }
+                                    if(jsonObject.has("email")){
+                                        email = jsonObject.getString("email");
+                                    }
+                                    if(jsonObject.has("message")){
+                                        message = jsonObject.getString("message");
+                                    }
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -100,13 +104,17 @@ public class loginActivity extends AppCompatActivity {
 
                                     DatabaseOperation dop = new DatabaseOperation(getApplicationContext());
                                     dop.guardarUsuario(dop, name, "", email);
-
+                                    //TODO: CAMBIAR LOGO APP
+                                    //TODO: Agregar validacion donde veamos si exiten registros en la tabla Usuario, si existe, limpiamos la tabla. Si no, continuar
+                                    //TODO: Evitar que te deje ingresar si los campos son nulos
+                                    //TODO: Eliminar la base de datos al darle log out
+                                    //TODO: Agregar "sesion" por tiempo, y que te mande a login despues de preguntar si quiere seguir conectado con AlertDialog
                                     Intent intent = new Intent(loginActivity.this, general.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), code, Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }, new Response.ErrorListener()

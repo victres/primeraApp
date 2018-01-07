@@ -26,14 +26,14 @@ public class general extends AppCompatActivity {
 
         init();
 
-        DatabaseOperation dop = new DatabaseOperation(getApplicationContext());
+        DatabaseOperation dop = new DatabaseOperation(getApplication());
         Cursor cursor = dop.consultarUsuarios(dop);
 
         if (cursor.getCount() > 0) {
 
             cursor.moveToFirst();
 
-            name.setText(cursor.getString(cursor.getColumnIndex("name")));
+            name.setText(cursor.getString(cursor.getColumnIndex("usuario")));
             email.setText(cursor.getString(cursor.getColumnIndex("email")));
         }
 

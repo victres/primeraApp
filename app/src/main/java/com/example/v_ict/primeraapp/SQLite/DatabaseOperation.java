@@ -15,6 +15,7 @@ import com.example.v_ict.primeraapp.SQLite.TablaInformacion.TablaUsuario;
 public class DatabaseOperation extends SQLiteOpenHelper {
 
     public static final String database_name = "primeraApp";
+    //TODO: Actualizar version
     public static final int database_version = 1;
 
     public String CREATE_QUERY_USUARIO = "CREATE TABLE " +
@@ -45,6 +46,7 @@ public class DatabaseOperation extends SQLiteOpenHelper {
         cv.put(TablaUsuario.USUARIO, name);
         cv.put(TablaUsuario.CONTRASENIA, password);
         cv.put(TablaUsuario.EMAIL, email);
+        //Ingresar fecha
 
         long response = sdb.insert(TablaUsuario.TABLE_NAME, null, cv);
     }
