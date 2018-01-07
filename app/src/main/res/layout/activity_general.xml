@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.v_ict.primeraapp.general"
-    android:gravity="center">
-<TextView
-    android:layout_centerHorizontal="true"
-    android:id="@+id/bienv"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/bienvenido"
-    android:textSize="30dp"
-    android:textColor="@color/colorPrimaryDark"/>
-    <Button
-        android:id="@+id/logout"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/bienv"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.v_ict.primeraapp.general">
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/bienvenido"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:background="@color/greyLogin"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:background="@drawable/gradient2"
         android:text="@string/logout"
         android:textColor="@color/greyLogin"
-        android:textSize="20dp"/>
-</RelativeLayout>
+        android:textSize="20dp" />
+</LinearLayout>

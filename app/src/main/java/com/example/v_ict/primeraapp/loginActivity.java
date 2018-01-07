@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+import com.example.v_ict.primeraapp.SQLite.DatabaseOperation;
 import com.example.v_ict.primeraapp.Volley.Constants;
 import com.example.v_ict.primeraapp.Volley.VolleySingleton;
 
@@ -78,17 +79,28 @@ public class loginActivity extends AppCompatActivity {
                                 String code = "";
                                 String message = "";
 
+                                String name = "";
+                                String email = "";
+
                                 try {
                                     jsonArray = new JSONArray(response);
                                     jsonObject = new JSONObject(jsonArray.get(0).toString());
 
                                     code = jsonObject.getString("code");
                                     message = jsonObject.getString("message");
+
+                                    name = jsonObject.getString("name");
+                                    email = jsonObject.getString("email");
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
 
                                 if (code.equals("login_success")) {
+
+                                    DatabaseOperation dop = new DatabaseOperation(getApplicationContext());
+                                    dop.guardarUsuario(dop, name, "", email);
+
                                     Intent intent = new Intent(loginActivity.this, general.class);
                                     startActivity(intent);
                                     finish();
