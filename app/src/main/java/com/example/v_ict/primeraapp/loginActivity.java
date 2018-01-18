@@ -104,7 +104,6 @@ public class loginActivity extends AppCompatActivity {
 
                                     DatabaseOperation dop = new DatabaseOperation(getApplicationContext());
                                     dop.guardarUsuario(dop, name, "", email);
-                                    //TODO: CAMBIAR LOGO APP
                                     //TODO: Agregar validacion donde veamos si exiten registros en la tabla Usuario, si existe, limpiamos la tabla. Si no, continuar
                                     //TODO: Evitar que te deje ingresar si los campos son nulos
                                     //TODO: Eliminar la base de datos al darle log out

@@ -20,6 +20,7 @@ public class TablaInformacion {
         //TODO: Agregar Sesion y actualizar version en DatabaseOperation
 
         public static final String TABLE_NAME = "usuario";
+        public static final String TABLE_SESION = "sesion";
 
     }
 

@@ -16,7 +16,7 @@ public class DatabaseOperation extends SQLiteOpenHelper {
 
     public static final String database_name = "primeraApp";
     //TODO: Actualizar version
-    public static final int database_version = 1;
+    public static final int database_version = 2;
 
     public String CREATE_QUERY_USUARIO = "CREATE TABLE " +
             TablaUsuario.TABLE_NAME + " (" +
@@ -35,7 +35,7 @@ public class DatabaseOperation extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + TablaUsuario.TABLE_NAME);
     }
 
     // GUARDAR USUARIO
@@ -63,5 +63,11 @@ public class DatabaseOperation extends SQLiteOpenHelper {
 
         Cursor cursor = sdb.query(TablaUsuario.TABLE_NAME, colums, null, null, null, null, null);
         return cursor;
+    }
+    // ELIMINAR ESTATUS
+    public boolean eliminarEstatus(DatabaseOperation dop) {
+        SQLiteDatabase sdb = dop.getWritableDatabase();
+        int result = sdb.delete(TablaUsuario.TABLE_NAME, null, null);
+        return result > 0;
     }
 }
