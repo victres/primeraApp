@@ -4,6 +4,6 @@ public class Constants {
 
     // TODO: Cambiar IP a la de la computadora servidor
 
-    public static String server = "http://192.168.137.1/user_server/";
+    public static String server = "http://10.240.124.151/user_server/";
 
 }

@@ -3,6 +3,7 @@ package com.example.v_ict.primeraapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -86,13 +87,13 @@ public class loginActivity extends AppCompatActivity {
                                     jsonArray = new JSONArray(response);
                                     jsonObject = new JSONObject(jsonArray.get(0).toString());
                                     code = jsonObject.getString("code");
-                                    if(jsonObject.has("name")){
+                                    if (jsonObject.has("name")) {
                                         name = jsonObject.getString("name");
                                     }
-                                    if(jsonObject.has("email")){
+                                    if (jsonObject.has("email")) {
                                         email = jsonObject.getString("email");
                                     }
-                                    if(jsonObject.has("message")){
+                                    if (jsonObject.has("message")) {
                                         message = jsonObject.getString("message");
                                     }
 
@@ -103,6 +104,14 @@ public class loginActivity extends AppCompatActivity {
                                 if (code.equals("login_success")) {
 
                                     DatabaseOperation dop = new DatabaseOperation(getApplicationContext());
+
+                                    if (dop.validaSiExisteUsuario(dop)) {
+
+                                        Time now = new Time();
+                                        now.setToNow();
+                                        Toast.makeText(getApplication(), "Elimino Datos, Existia una Sesión" + now.hour + ":" + now.minute, Toast.LENGTH_LONG).show();
+                                    }
+
                                     dop.guardarUsuario(dop, name, "", email);
                                     //TODO: Agregar validacion donde veamos si exiten registros en la tabla Usuario, si existe, limpiamos la tabla. Si no, continuar
                                     //TODO: Evitar que te deje ingresar si los campos son nulos

@@ -70,4 +70,26 @@ public class DatabaseOperation extends SQLiteOpenHelper {
         int result = sdb.delete(TablaUsuario.TABLE_NAME, null, null);
         return result > 0;
     }
+
+    // Validacion
+    public Boolean validaSiExisteUsuario(DatabaseOperation dop) {
+        SQLiteDatabase sdb = dop.getReadableDatabase();
+
+        Boolean elimino = false;
+
+        String[] colums = {
+                TablaUsuario.USUARIO,
+                TablaUsuario.CONTRASENIA,
+                TablaUsuario.EMAIL
+        };
+
+        Cursor cursor = sdb.query(TablaUsuario.TABLE_NAME, colums, null, null, null, null, null);
+
+        if(cursor.getCount()>0){
+            sdb.delete(TablaUsuario.TABLE_NAME, null,null);
+            elimino = true;
+        }
+
+        return elimino;
+    }
 }
